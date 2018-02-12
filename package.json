@@ -501,5 +501,11 @@
       }
     ]
   },
-  "dependencies": {}
+  "dependencies": {},
+  "devDependencies": {
+    "typescript": "^2.8.0-dev.20180211"
+  },
+  "scripts": {
+    "build:tools": "tsc -p tools"
+  }
 }
