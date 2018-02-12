@@ -2,7 +2,7 @@
 /// <reference path="../lib/types.d.ts" />
 
 import utils = require('../lib/utils');
-import entry = require('../entry');
+import entry = require('../Entry');
 import createAction = require('../actions/Create');
 import server = require('../server/server');
 import FileUtil = require('../lib/FileUtil');
