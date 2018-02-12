@@ -1,4 +1,4 @@
-﻿/// <reference path="xml/xml.ts" />
+﻿/// <reference path="xml/XML.ts" />
 /// <reference path="../globals.ts" />
 /// <reference path="./typescript-plus/lib/typescriptServices.d.ts" />
 
