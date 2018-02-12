@@ -395,9 +395,11 @@
   },
   "dependencies": {},
   "devDependencies": {
+    "ts-node": "^4.1.0",
     "typescript": "^2.8.0-dev.20180211"
   },
   "scripts": {
-    "build:tools": "tsc -p tools"
+    "tools": "ts-node -P tools tools/bin/egret.ts",
+    "build:tools": "tsc -p tools -outDir build/egret-tools"
   }
 }
