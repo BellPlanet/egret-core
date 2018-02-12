@@ -6,7 +6,11 @@ import service = require('../service/index');
 import FileUtil = require('../lib/FileUtil');
 
 import CompileProject = require('../actions/CompileProject');
-import { publishResource, legacyPublishHTML5, legacyPublishNative } from '../actions/PublishResourceAction';
+import {
+    publishResource,
+    legacyPublishHTML5,
+    legacyPublishNative,
+} from '../actions/PublishResourceAction';
 import ZipCommand = require("../actions/ZipCommand");
 import * as EgretProject from '../project';
 import * as path from 'path';
@@ -23,9 +27,15 @@ class Publish implements egret.Command {
 
         const target = egret.args.target;
         const version = getVersionInfo();
-        options.releaseDir = FileUtil.joinPath(config.getReleaseRoot(), target, version);
-        globals.log(1402, target, "");
+        const releaseRoot = config.getReleaseRoot();
+        options.releaseDir = FileUtil.joinPath(releaseRoot, target, version);
         await publishResource(version);
+
+        console.error({
+            version,
+            releaseDir: options.releaseDir,
+        });
+
         return DontExitCode;
     }
 }
