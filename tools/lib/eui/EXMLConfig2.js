@@ -22,7 +22,7 @@ var stylesMap = {};
 /**
  * @private
  */
-var EXMLConfig = (function () {
+var EXMLConfig = /** @class */ (function () {
     function EXMLConfig() {
         /**
          * 组件清单列表
@@ -251,7 +251,7 @@ var EXMLConfig = (function () {
         }
         return type;
     };
+    EXMLConfig.__instance = null;
     return EXMLConfig;
 }());
-EXMLConfig.__instance = null;
 exports.EXMLConfig = EXMLConfig;

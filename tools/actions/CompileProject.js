@@ -3,7 +3,7 @@
 var FileUtil = require("../lib/FileUtil");
 var path = require("path");
 var Compiler = require("./Compiler");
-var CompileProject = (function () {
+var CompileProject = /** @class */ (function () {
     function CompileProject() {
     }
     CompileProject.prototype.compile = function (options) {

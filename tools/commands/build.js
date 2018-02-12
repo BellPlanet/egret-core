@@ -46,7 +46,7 @@ var Compiler = require("../actions/Compiler");
 var tasks = require("../tasks");
 var path = require("path");
 console.log(utils.tr(1004, 0));
-var Build = (function () {
+var Build = /** @class */ (function () {
     function Build() {
     }
     Build.prototype.execute = function () {
@@ -163,9 +163,9 @@ var Build = (function () {
             _loop_1(m);
         }
     };
+    __decorate([
+        utils.measure
+    ], Build.prototype, "execute", null);
     return Build;
 }());
-__decorate([
-    utils.measure
-], Build.prototype, "execute", null);
 module.exports = Build;

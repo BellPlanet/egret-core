@@ -44,7 +44,7 @@ var FileUtil = require("../lib/FileUtil");
 var service = require("../service/index");
 var project_1 = require("../project");
 var os = require("os");
-var Run = (function () {
+var Run = /** @class */ (function () {
     function Run() {
         this.initVersion = ""; //初始化的 egret 版本，如果版本变化了，关掉当前的进程
     }

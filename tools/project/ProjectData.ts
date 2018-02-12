@@ -6,7 +6,7 @@ import _path = require("path");
 import cp = require('child_process');
 import { cache, shell } from '../lib/utils';
 import { version } from '../lib/doT';
-
+import { LocalLauncher } from './LocalLauncher';
 
 export type Package_JSON = {
 
@@ -320,27 +320,11 @@ class EngineData {
         throw `找不到指定的 egret 版本: ${checkVersion}`;
     }
 
-
     getLauncherLibrary(): LauncherAPI {
-        const egretjspath = file.joinPath(getEgretLauncherPath(), "egret.js");
-        const m = require(egretjspath);
-        const selector: LauncherAPI = m.selector;
-        if (!this.proxy) {
-            this.proxy = new Proxy(selector, {
-                get: (target, p, receiver) => {
-                    const result = target[p];
-                    if (!result) {
-                        throw `找不到 Launcher API: ${p},请升级最新的 Egret Launcher 以解决此问题`//i18n
-                    }
-                    return result.bind(target)
-                }
-            });
-        }
-        return this.proxy;
+        return new LocalLauncher();
     }
 
     async init() {
-
         const egretjs = this.getLauncherLibrary();
         const data = egretjs.getAllEngineVersions();
         for (let item in data) {

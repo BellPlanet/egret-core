@@ -43,7 +43,8 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var file = require("../lib/FileUtil");
 var _utils = require("../lib/utils");
 var _path = require("path");
-var EgretProjectData = (function () {
+var LocalLauncher_1 = require("./LocalLauncher");
+var EgretProjectData = /** @class */ (function () {
     function EgretProjectData() {
         this.egretProperties = {
             modules: [],
@@ -276,12 +277,12 @@ var EgretProjectData = (function () {
         });
         return result;
     };
+    __decorate([
+        _utils.cache
+    ], EgretProjectData.prototype, "getModulesConfig", null);
     return EgretProjectData;
 }());
-__decorate([
-    _utils.cache
-], EgretProjectData.prototype, "getModulesConfig", null);
-var EngineData = (function () {
+var EngineData = /** @class */ (function () {
     function EngineData() {
         this.versions = [];
     }
@@ -295,21 +296,7 @@ var EngineData = (function () {
         throw "\u627E\u4E0D\u5230\u6307\u5B9A\u7684 egret \u7248\u672C: " + checkVersion;
     };
     EngineData.prototype.getLauncherLibrary = function () {
-        var egretjspath = file.joinPath(getEgretLauncherPath(), "egret.js");
-        var m = require(egretjspath);
-        var selector = m.selector;
-        if (!this.proxy) {
-            this.proxy = new Proxy(selector, {
-                get: function (target, p, receiver) {
-                    var result = target[p];
-                    if (!result) {
-                        throw "\u627E\u4E0D\u5230 Launcher API: " + p + ",\u8BF7\u5347\u7EA7\u6700\u65B0\u7684 Egret Launcher \u4EE5\u89E3\u51B3\u6B64\u95EE\u9898"; //i18n
-                    }
-                    return result.bind(target);
-                }
-            });
-        }
-        return this.proxy;
+        return new LocalLauncher_1.LocalLauncher();
     };
     EngineData.prototype.init = function () {
         return __awaiter(this, void 0, void 0, function () {
@@ -321,6 +308,7 @@ var EngineData = (function () {
                     value = data[item];
                     this.versions.push({ version: value.version, path: value.root });
                 }
+                console.log(data);
                 return [2 /*return*/];
             });
         });

@@ -129,7 +129,7 @@ function executeCommandLine(args) {
     }).catch(function (e) { return console.log(e); });
 }
 exports.executeCommandLine = executeCommandLine;
-var Entry = (function () {
+var Entry = /** @class */ (function () {
     function Entry() {
     }
     Entry.prototype.executeOption = function (options) {

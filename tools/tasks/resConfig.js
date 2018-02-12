@@ -47,7 +47,7 @@ var wing_res_json = "wing.res.json";
 var filters = [
     wing_res_json,
 ];
-var EmitResConfigFilePlugin = (function () {
+var EmitResConfigFilePlugin = /** @class */ (function () {
     function EmitResConfigFilePlugin(options) {
         this.options = options;
         this.config = { alias: {}, groups: {}, resources: {} };
@@ -221,7 +221,7 @@ var resourceConfig;
 })(resourceConfig || (resourceConfig = {}));
 var vfs;
 (function (vfs) {
-    var FileSystem = (function () {
+    var FileSystem = /** @class */ (function () {
         function FileSystem() {
             this.root = {};
         }
@@ -360,4 +360,4 @@ var vfs;
 //             for (let group of resourceJson.groups) {
 //                 config.groups[group.name] = group.keys.split(",");
 //             }
-//         } 
+//         }

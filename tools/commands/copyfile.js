@@ -2,7 +2,7 @@
 var file = require("../lib/FileUtil");
 var EgretProject = require("../project");
 var config = EgretProject.projectData;
-var CopyFilesCommand = (function () {
+var CopyFilesCommand = /** @class */ (function () {
     function CopyFilesCommand() {
     }
     CopyFilesCommand.prototype.execute = function () {

@@ -8,7 +8,7 @@ var parser = require("../parser/Parser");
 var EgretProject = require("../project");
 var copyNative = require("../actions/CopyNativeFiles");
 var EngineData_1 = require("../EngineData");
-var AutoCompileCommand = (function () {
+var AutoCompileCommand = /** @class */ (function () {
     function AutoCompileCommand() {
         this.exitCode = [0, 0];
         this.messages = [[], [], [], []];

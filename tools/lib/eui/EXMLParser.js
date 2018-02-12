@@ -50,7 +50,7 @@ var basicTypes = [TYPE_ARRAY, TYPE_STexture, "boolean", "string", "number"];
 var wingKeys = ["id", "locked", "includeIn", "excludeFrom"];
 var htmlEntities = [["<", "&lt;"], [">", "&gt;"], ["&", "&amp;"], ["\"", "&quot;"], ["'", "&apos;"]];
 var jsKeyWords = ["null", "NaN", "undefined", "true", "false"];
-var EXMLFileSystem = (function () {
+var EXMLFileSystem = /** @class */ (function () {
     function EXMLFileSystem() {
         this.root = {};
         this.fileList = [];
@@ -75,7 +75,7 @@ exports.fileSystem = new EXMLFileSystem();
 /**
  * @private
  */
-var EXMLParser = (function () {
+var EXMLParser = /** @class */ (function () {
     /**
      * @private
      */

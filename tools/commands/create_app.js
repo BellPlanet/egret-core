@@ -7,7 +7,7 @@ var ParseConfigCommand = require("../actions/ParseConfig");
 var fs = require('fs');
 var cp_exec = require('child_process').exec;
 var copyNative = require("../actions/CopyNativeFiles");
-var CreateAppCommand = (function () {
+var CreateAppCommand = /** @class */ (function () {
     function CreateAppCommand() {
         this.androidHomeWarnning = "请设置环境变量 ANDROID_HOME ，值为 Android SDK 的根目录。";
     }

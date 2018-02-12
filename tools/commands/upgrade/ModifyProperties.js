@@ -1,6 +1,6 @@
 /// <reference path="../../lib/types.d.ts" />
 var file = require("../../lib/FileUtil");
-var ModifyProperties = (function () {
+var ModifyProperties = /** @class */ (function () {
     function ModifyProperties() {
     }
     ModifyProperties.prototype.initProperties = function () {

@@ -3,7 +3,7 @@
  */
 /// <reference path="../lib/types.d.ts" />
 var file = require("../lib/FileUtil");
-var ParseConfigCommand = (function () {
+var ParseConfigCommand = /** @class */ (function () {
     function ParseConfigCommand() {
     }
     ParseConfigCommand.prototype.execute = function () {

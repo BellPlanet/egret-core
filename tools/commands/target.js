@@ -36,7 +36,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 var path = require("path");
 var FileUtil = require("../lib/FileUtil");
 var utils_1 = require("../lib/utils");
-var Target = (function () {
+var Target = /** @class */ (function () {
     function Target() {
     }
     Target.prototype.execute = function () {
