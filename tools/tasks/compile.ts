@@ -34,45 +34,19 @@ export class CompilePlugin {
         scripts.forEach((script) => {
             pluginContext.createFile(script, fs.readFileSync(FileUtil.joinPath(pluginContext.projectRoot, script)));
         })
-        const jscode = tinyCompiler();
+        const jscode = new TinyCompiler();
         pluginContext.createFile("main.js", new Buffer(jscode));
 
         if (target == 'web') {
             const filepath = FileUtil.joinPath(projectRoot, 'template/web/index.html')
             const htmlContent = fs.readFileSync(filepath);
             pluginContext.createFile("index.html", htmlContent);
-
-
-
-
         }
-
-        const srcPath = FileUtil.joinPath(projectRoot, 'src');
-
-        // watch.createMonitor(srcPath, { persistent: true, interval: 2007, filter: (f, stat) => !f.match(/\.g(\.d)?\.ts/) }, m => {
-        //     m.on("created", (fileName) =>
-        //         this.onFileChanged([{ fileName, type: "added" }])
-        //     )
-        //         .on("removed", (fileName) =>
-        //             this.onFileChanged([{ fileName, type: "removed" }])
-        //         )
-        //         .on("changed", (fileName) =>
-        //             this.onFileChanged([{ fileName, type: "modified" }])
-        //         );
-        // });
-
-
     }
 
     private onFileChanged(fileChanged: egret.FileChanges) {
-
         compiler.compileWithChanges(fileChanged)
     }
-
-
-
-
-
 }
 
 export class UglifyPlugin {
@@ -114,7 +88,7 @@ export class UglifyPlugin {
 }
 
 
-function tinyCompiler() {
+function TinyCompiler() {
 
     const os = require('os');
     const outfile = FileUtil.joinPath(os.tmpdir(), 'main.min.js');
