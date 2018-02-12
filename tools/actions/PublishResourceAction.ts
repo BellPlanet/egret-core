@@ -16,8 +16,6 @@ import * as parseConfig from './ParseConfig'
 
 
 export async function publishResource(version: string) {
-
-
     let { releaseDir, projectDir } = egret.args;
     const projectRoot = projectDir;
     const res = require('../lib/resourcemanager');
