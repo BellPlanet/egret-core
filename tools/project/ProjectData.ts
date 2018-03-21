@@ -44,6 +44,8 @@ class EgretProjectData {
 
     };
 
+    private vendorLibsRoot?: string;
+
     projectRoot = "";
     init(projectRoot: string) {
         this.projectRoot = projectRoot;
@@ -82,6 +84,10 @@ class EgretProjectData {
                 globals.log2(8);
                 process.exit(1);
             }
+        }
+        const vendorLibsPath = this.getFilePath('libs');
+        if (file.exists(vendorLibsPath)) {
+            this.vendorLibsRoot = vendorLibsPath;
         }
     }
 
@@ -189,9 +195,10 @@ class EgretProjectData {
             }
             return _path.join(egret.root, 'build', m.name);
         }
-        let egretLibs = getAppDataEnginesRootPath();
+
         let keyword = '${EGRET_APP_DATA}';
         if (p.indexOf(keyword) >= 0) {
+            let egretLibs = getAppDataEnginesRootPath();
             p = p.replace(keyword, egretLibs);
         }
         let keyword2 = '${EGRET_DEFAULT}';
@@ -215,8 +222,12 @@ class EgretProjectData {
             _path.join(modulePath, "bin", name),
             _path.join(modulePath, "bin"),
             _path.join(modulePath, "build", name),
-            _path.join(modulePath)
+            _path.join(modulePath),
         ];
+        if (this.vendorLibsRoot) {
+            // NOTE(hbc): inject custom vendor library root
+            searchPaths.unshift(_path.join(this.vendorLibsRoot, 'modules', name));
+        }
         // if (m.path) {
         //     searchPaths.push(modulePath)
         // }
