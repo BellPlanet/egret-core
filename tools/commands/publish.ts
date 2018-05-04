@@ -26,7 +26,11 @@ class Publish implements egret.Command {
         const config = EgretProject.projectData;
 
         const target = egret.args.target;
-        const version = getVersionInfo();
+        let version = getVersionInfo();
+        if (process.env.DEV) {
+            // NOTE: fixed to latest
+            version = 'latest';
+        }
         const releaseRoot = config.getReleaseRoot();
         options.releaseDir = FileUtil.joinPath(releaseRoot, target, version);
         await publishResource(version);
