@@ -6,7 +6,7 @@ import _path = require("path");
 import cp = require('child_process');
 import { cache, shell } from '../lib/utils';
 import { version } from '../lib/doT';
-
+import { LocalLauncher } from './LocalLauncher';
 
 export type Package_JSON = {
 
@@ -336,23 +336,7 @@ class EgretLauncherProxy {
     }
 
     getLauncherLibrary(): LauncherAPI {
-        const egretjspath = file.joinPath(getEgretLauncherPath(), "egret.js");
-        const minVersions = this.getMinVersion();
-        const m = require(egretjspath);
-        const selector: LauncherAPI = m.selector;
-        if (!this.proxy) {
-            this.proxy = new Proxy(selector, {
-                get: (target, p, receiver) => {
-                    const result = target[p];
-                    if (!result) {
-                        const minVersion = minVersions[p];
-                        throw `找不到 LauncherAPI:${p},请安装最新的白鹭引擎启动器客户端解决此问题,最低版本要求:${minVersion},下载地址:https://egret.com/products/engine.html`//i18n
-                    }
-                    return result.bind(target)
-                }
-            });
-        }
-        return this.proxy;
+       return new LocalLauncher();
     }
 }
 
